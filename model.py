@@ -24,7 +24,7 @@ def build_token_to_id_vocab(sentences, specials=('<pad>', '<bos>', '<eos>', '<un
 # Step 2 - build_id_to_token_vocab
 def build_id_to_token_vocab(token_to_id):
     # build the inverse id-to-token dictionary from token_to_id
-    return {id_: token for token, id_ in token_to_id}
+    return {id_: token for token, id_ in token_to_id.items()}
 
 # Step 3 - encode_sentence_to_ids
 def encode_sentence_to_ids(sentence, token_to_id, unk_token='<unk>'):
@@ -33,8 +33,10 @@ def encode_sentence_to_ids(sentence, token_to_id, unk_token='<unk>'):
         return []
     return [token_to_id[token] if token in token_to_id else token_to_id[unk_token] for token in sentence.split(" ")]
 
-# Step 4 - decode_ids_to_tokens (not yet solved)
-# TODO: implement
+# Step 4 - decode_ids_to_tokens
+def decode_ids_to_tokens(ids, id_to_token):
+    # map each id in ids to its token string via id_to_token and return the list
+    return [id_to_token[id_] for id_ in ids]
 
 # Step 5 - pad_id_sequence (not yet solved)
 # TODO: implement
